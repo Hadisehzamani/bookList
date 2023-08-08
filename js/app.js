@@ -1,6 +1,9 @@
 let submitBtn = document.querySelector('.btn')
 let bookListArr = []
 let bookListTable = document.querySelector('#book-list')
+let titleInput = document.querySelector('#title')
+let authorInput = document.querySelector('#author')
+let yearInput = document.querySelector('#year')
 
 window.addEventListener('load', getLocalStorage)
 submitBtn.addEventListener('click', function(e){
@@ -12,13 +15,9 @@ submitBtn.addEventListener('click', function(e){
 
 function bookListGeneratir(e, arr){
     e.preventDefault()
-    let titleInput = document.querySelector('#title')
-    let titleInputValue = titleInput.value
     
-    let authorInput = document.querySelector('#author')
+    let titleInputValue = titleInput.value
     let authorInputValue = authorInput.value
-
-    let yearInput = document.querySelector('#year')
     let yearInputValue = yearInput.value
     
     if(titleInputValue == "" || authorInputValue == "" || yearInputValue == ""){
@@ -48,6 +47,7 @@ function bookList(arr){
 
 function setLocalStorage(arr){
     localStorage.setItem('bookList', JSON.stringify(arr))
+    getEmptyInput()
 }
 
 function getLocalStorage(){
@@ -61,3 +61,8 @@ function getLocalStorage(){
     bookList(bookListArr)
 }
 
+function getEmptyInput(){
+    titleInput.value = ''
+    authorInput.value = ''
+    yearInput.value = ''
+}
